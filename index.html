@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="favicon.ico">
+    <title>Meme-generator</title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+
+<body onload="onInit()">
+
+    <!-- <div class="main-screen" onclick="toggleMenu()"></div> -->
+
+    <header class="main-header">
+        <div class="nav-container container flex space-between align-center">
+            <div class="logo"><img src="img/LOGO/LOGO.png" alt=""></div>
+            <ul class="main-nav flex justify-center align-center clean-list">
+                <li><a class="flex justify-center align-center active" href="#">Gallery</a></li>
+                <li><a class="flex justify-center align-center" href="#">Memes</a></li>
+                <li><a class="flex justify-center align-center" href="#">About</a></li>
+            </ul>
+            <!-- <i class="fas fa-bars"onclick="toggleMenu()">☰</i> -->
+        </div>
+
+
+        </div>
+        <main class="main-content container">
+            <section class="gallery-container">
+                <div class="search-meme-container flex">
+                    <header class="search-container container flex space-between align-center">
+                        <form class="search-form" onchange="onSearchImg(event)">
+                            <input type="txt" class="search" name="search" placeholder="Search" />
+                            <button class="search-btn">search</button>
+                        </form>
+                        <div class="filter-words">
+                            sdfsdf sdfgsdgsd asasd asdasda asdasd
+                        </div>
+                        <section class="img-container"></section>
+            </section>
+            <section class="save-memes-container">
+
+            </section>
+            <section class="edit-memes-container flex flex-row justify-center ">
+                <div class="canvas-container flex justify-center">
+                    <canvas id="my-canvas" height="500" width="500"></canvas>
+                </div>
+                <div class="edit-img-container">
+                    <input type="text" class="meme-txt" name="meme-txt" oninput="onTextEdit(this)" />
+                    <div class="btn-edit flex">
+                        <button class="ctrl-btn bigger" onclick="onIncreaseTxt()">+A</button>
+                        <button class="ctrl-btn smaller" onclick="onDecreaseTxt()">-A</button>
+                        <button class="btn-up" onclick="onMoveUp()">⇧</button>
+                        <button class="btn-down" onclick="onMoveDown()">⇩</button>
+                        <button class="btn-switch-line" onclick="onSwitchLines()">↓↑</button>
+                        <button class="btn-add-line" onclick="onAddLine()">+</button>
+                        <button class="btn-delete-line" onclick="onDeleteLine()"></button>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer class="main-footer">
+            <div class="footer-container container flex flex-column align-center">
+                <div class="footer-logo logo"><img src="img/LOGO/LOGO.png" alt=""></div>
+                <small>© 2021 coffeerights - All Rights Reserved - Yotam Ben-Porat <a href="https://github.com/yotam-bp"
+                        target="_blank">👁</a></small>
+                <!-- <div class="image-container social-nav flex">
+                <a class="fa facebook" href="#"></a>
+                <a class="fa twitter" href="#"></a>
+                <a class="fa instagram" href="#"></a>
+                <a class="fa linkedin" href="#"></a>
+            </div> -->
+            </div>
+        </footer>
+        <!-- <script>
+        function toggleMenu() {
+            document.body.classList.toggle('menu-open')
+        }
+        
+    </script> -->
+        <script src="js/util.js"></script>
+        <script src="js/meme-storage.js"></script>
+        <script src="js/meme-service.js"></script>
+        <script src="js/main.js"></script>
+</body>
+
+</html>
