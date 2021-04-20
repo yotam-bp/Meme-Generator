@@ -18,45 +18,64 @@
         <div class="nav-container container flex space-between align-center">
             <div class="logo"><img src="img/LOGO/LOGO.png" alt=""></div>
             <ul class="main-nav flex justify-center align-center clean-list">
-                <li><a class="flex justify-center align-center active" href="#">Gallery</a></li>
+                <li><a class="flex justify-center align-center active" onclick="renderGallery()" href="#">Gallery</a></li>
                 <li><a class="flex justify-center align-center" href="#">Memes</a></li>
                 <li><a class="flex justify-center align-center" href="#">About</a></li>
             </ul>
             <!-- <i class="fas fa-bars"onclick="toggleMenu()">☰</i> -->
         </div>
 
-
         </div>
-        <main class="main-content container">
-            <section class="gallery-container">
+        <main class="main-content container ">
+            <section class="gallery-container flex flex-column">
                 <div class="search-meme-container flex">
-                    <header class="search-container container flex space-between align-center">
+                    <div class="search-container container flex align-center">
                         <form class="search-form" onchange="onSearchImg(event)">
                             <input type="txt" class="search" name="search" placeholder="Search" />
                             <button class="search-btn">search</button>
                         </form>
                         <div class="filter-words">
-                            sdfsdf sdfgsdgsd asasd asdasda asdasd
-                        </div>
-                        <section class="img-container"></section>
-            </section>
-            <section class="save-memes-container">
 
+                        </div>
+                    </div>
             </section>
-            <section class="edit-memes-container flex flex-row justify-center ">
+            <div class="img-container grid"></div>
+            <section class="save-memes-container">
+           </section>
+
+            <section class="edit-memes-container flex flex-row justify-center">
                 <div class="canvas-container flex justify-center">
                     <canvas id="my-canvas" height="500" width="500"></canvas>
                 </div>
-                <div class="edit-img-container">
-                    <input type="text" class="meme-txt" name="meme-txt" oninput="onTextEdit(this)" />
-                    <div class="btn-edit flex">
-                        <button class="ctrl-btn bigger" onclick="onIncreaseTxt()">+A</button>
-                        <button class="ctrl-btn smaller" onclick="onDecreaseTxt()">-A</button>
-                        <button class="btn-up" onclick="onMoveUp()">⇧</button>
-                        <button class="btn-down" onclick="onMoveDown()">⇩</button>
-                        <button class="btn-switch-line" onclick="onSwitchLines()">↓↑</button>
-                        <button class="btn-add-line" onclick="onAddLine()">+</button>
-                        <button class="btn-delete-line" onclick="onDeleteLine()"></button>
+                <div class="edit-img-container flex flex-column">
+
+                    <input type="text" class="meme-txt" name="meme-txt" placeholder="text here" oninput="onTextEdit(this.value)" />
+                    <div class="edit-btns flex flex-column">
+
+                        <div class="btns-1 flex justify-center space-evenly">
+                            <button class=" btn-up" onclick="onMoveLineUp(10)">⇧</button>
+                            <button class="btn-down" onclick="onMoveLineDown(10)">⇩</button>
+                            <button class="btn-switch-line" onclick="onSwitchLines()"><img src="ICONS/up&down.png" alt=""></button>
+                            <button class="btn-delete-line" onclick="onDeleteLine()"><img src="ICONS/trash.png" alt=""></button>
+                            <button class="btn-add-line" onclick="onAddLine()"><img src="ICONS/add.png" alt="">
+                            </button>
+                        </div>
+
+                        <div class="btns-2 flex justify-center space-evenly">
+                            <button class="ctrl-btn bigger" onclick="onIncreaseTxt(3)"><img src="ICONS/increase.png" alt=""></button>
+                            <button class="ctrl-btn smaller" oninput="onDecreaseTxt(3)"><img src="ICONS/decrease.png" alt=""></button>
+                            <input type="color" class="border-color" oninput="onChangeBorderColor(this.value)"></input>
+                            <input type="color" class="font-color" oninput="onChangeFontColor(this.value)"></input>
+                        </div>
+
+                        <div class="btns-3 flex justify-center space-evenly">
+                            <form action="" method="POST" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
+                                <input name="img" id="imgData" type="hidden" />
+                                <button class="btn-share" type="submit"><img src="ICONS/facebook.png" alt=""></button>
+                              </form>
+                            <button class="save-meme" onclick="onSaveMeme()">save</button>
+                            <button><a href="#" class="download-btn" onclick="downloadImg(this)"download="my-meme.jpg">down<br>load</a></button>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -64,8 +83,7 @@
         <footer class="main-footer">
             <div class="footer-container container flex flex-column align-center">
                 <div class="footer-logo logo"><img src="img/LOGO/LOGO.png" alt=""></div>
-                <small>© 2021 coffeerights - All Rights Reserved - Yotam Ben-Porat <a href="https://github.com/yotam-bp"
-                        target="_blank">👁</a></small>
+                <small>© 2021 coffeerights - All Rights Reserved - Yotam Ben-Porat <a href="https://github.com/yotam-bp" target="_blank"></a></small>
                 <!-- <div class="image-container social-nav flex">
                 <a class="fa facebook" href="#"></a>
                 <a class="fa twitter" href="#"></a>
