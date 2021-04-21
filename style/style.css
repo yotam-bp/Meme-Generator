@@ -282,29 +282,52 @@ small > a {
 } 
 
 @media (max-width: 500px) {
-  .nav-container, .main-nav a{
+
+  .main-nav a {
+    font-size: .8rem;
+    height: 50px;
+    width: 70px;
+    transition: box-shadow .3s;
+  }
+
+  .nav-container{
     height:50px;
   }
 
+  h2{
+    font-size: 1rem;
+  }
+
   .edit-memes-container{
-    margin-top: 5rem;
+    margin-top: 4.5rem;
     flex-direction: column;
-    height: 570px;
+    height: 400px;
     border: 0;
   }
 
+  .save-memes-container{
+    height: 400px;
+    margin-bottom: 0.1rem; 
+   }
+
+  .img-container{
+    grid-template-columns: repeat(auto-fill, minmax(150px,1fr));
+    max-height: 450px;
+  }
+
   .grid-head{
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
   }
 
   .search-meme-container{
-   margin-bottom: 1rem; 
+   margin-bottom: 0.1rem; 
   }
 
   .edit-img-container{
-  padding: 0.5em;;
+  padding: 0.5em;
   }
   .container {
+    padding: 0;
     margin: 0 auto;
     overflow: auto;
   }
@@ -312,8 +335,33 @@ small > a {
   .main-footer{
    position: fixed;
    bottom: 0;
-   height: 4rem;
+   height: 3.5rem;
+   text-align: center;
   }
+
+   .logo > img{
+     width: 70% ;
+     margin-inline-start: 10px;
+   }
+
+  .edit-btns button {
+    width: 40px;
+    height: 40px;
+}
+  small{
+    font-size: 0.7rem;
+  }
+  .edit-btns > *{
+    margin-bottom: 0.5rem;
+  }
+  input{
+    font-size: 1rem;
+  }
+  .meme-txt > input{
+    padding: 0 5rem;
+  }
+  
+  
 }
 
 

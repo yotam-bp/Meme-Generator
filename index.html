@@ -12,7 +12,7 @@
 
 <body onload="onInit()">
 
-    <!-- <div class="main-screen" onclick="toggleMenu()"></div> -->
+    <!-- <div class="main-screen" onclick="toggleMenu()"></div> ></div> -->
 
     <header class="main-header">
         <div class="nav-container container flex space-between align-center">
@@ -22,7 +22,6 @@
                 <li><a class="flex justify-center align-center" onclick="showSavedMemes()" >Memes</a></li>
                 <li><a class="flex justify-center align-center" href="#">About</a></li>
             </ul>
-            <!-- <i class="fas fa-bars"onclick="toggleMenu()">☰</i> -->
         </div>
 
         </div>
@@ -30,7 +29,7 @@
             <section class="gallery-container flex flex-column">
                 <div class="search-meme-container flex flex-row">
                     <div class="search-container container flex align-center">
-                        <form class="search-form" onchange="onSearchImg(event)">
+                        <form class="search-form" oninput="onSearchImg(this.value)">
                             <input type="txt" class="search" name="search" placeholder="Search" />
                             <button class="search-btn">search</button>
                         </form>
@@ -99,20 +98,9 @@
             <div class="footer-container container flex flex-column align-center">
                 <div class="footer-logo logo"><img src="img/LOGO/LOGO.png" alt=""></div>
                 <small>© 2021 coffeerights - All Rights Reserved - Yotam Ben-Porat <a href="https://github.com/yotam-bp" target="_blank">👁</a></small>
-                <!-- <div class="image-container social-nav flex">
-                <a class="fa facebook" href="#"></a>
-                <a class="fa twitter" href="#"></a>
-                <a class="fa instagram" href="#"></a>
-                <a class="fa linkedin" href="#"></a>
-            </div> -->
             </div>
         </footer>
-        <!-- <script>
-        function toggleMenu() {
-            document.body.classList.toggle('menu-open')
-        }
-        
-    </script> -->
+
         <script src="js/util.js"></script>
         <script src="js/meme-storage.js"></script>
         <script src="js/meme-service.js"></script>

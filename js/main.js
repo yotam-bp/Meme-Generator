@@ -3,6 +3,7 @@
 var gCanvas;
 var gCtx;
 
+
 function onInit() {
     gCanvas = document.getElementById('my-canvas')
     gCtx = gCanvas.getContext('2d')
@@ -14,8 +15,8 @@ function drawImg(imgId) {
     img.src = `img/meme-img/${imgId}.jpg`;
     img.onload = () => {
         if (window.innerWidth <= 500) {
-            gCanvas.width = 380;
-            gCanvas.height = 380;
+            gCanvas.width = 300;
+            gCanvas.height = 300;
         }
         else{
             gCanvas.width = 500;
@@ -92,15 +93,14 @@ function onSaveMeme() {
    
 }
 
-function onEditImg(imgId) {
-    setCurrImgId(imgId)
-    showEditor()
-    renderCanvas()
-}
+// function onEditImg(memeId) {
+//     showEditor()
+//     renderCanvas()
+// }
 
 function onClickImg(imgId) {
-    setCurrImgId(imgId)
     showEditor()
+    _createMeme(imgId)
     renderCanvas()
 }
 
@@ -119,6 +119,7 @@ function showGallery() {
     document.querySelector('.edit-memes-container').style.display = 'none'
     document.querySelector('.img-container').style.display = 'grid'
     document.querySelector('.save-memes-container').style.display = 'none'
+    document.querySelector('.grid-head').innerHTML = `<h2>Choose your favorite Meme</h2>`
 }
 function showEditor() {
     document.querySelector('.img-container').style.display = 'none'
@@ -141,3 +142,21 @@ function renderSavedMemes() {
     }).join('');
     document.querySelector('.save-memes-container').innerHTML = strHtml
 }
+
+function toggleMenu() {
+    document.body.classList.toggle('menu-open')
+    document.querySelector('.main-nav').classList.toggle('active')
+}
+
+
+
+// -----To Finish--------
+// function onSearchImg(text) {
+//     if (text.value === '') {
+//         let gallery = getImgs();
+//         renderGallery(gallery)
+//         return
+//     }
+//     let images = getSearchImage(text);
+//     renderGallery(images);
+// }

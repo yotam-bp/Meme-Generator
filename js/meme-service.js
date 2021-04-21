@@ -26,20 +26,25 @@ var gImgs = [
 ];
 
 var gKeywords = { 'happy': 12, 'funny puk': 1 }
- var gMeme  = {
-    selectedImgId: 5,
-    selectedLineIdx: 0,
-    lines: [{
-        txt: 'I never eat Falafel',
-        size: 40,
-        borderColor: '#000000',
-        fontFamily: 'impact',
-        fontColor: '#ffffff',
-        align:'center',
-        x:250,
-        y:50
+var gMeme
 
-    }]
+function _createMeme(imgId) {
+    gMeme = {
+        id: makeId(),
+        selectedImgId: imgId,
+        selectedLineIdx: 0,
+        lines:
+            [{
+                txt: 'text here',
+                size: 40,
+                borderColor: '#000000',
+                fontFamily: 'impact',
+                fontColor: '#ffffff',
+                align: 'center',
+                x: 250,
+                y: 50
+            }]
+    }
 }
 
 function drawText() {
@@ -71,10 +76,6 @@ function getImgByIdx() {
     return gImgs.findIndex((img) => gMeme.selectedImgId === img.id);
 }
 
-function setCurrImgId(imgId) {
-    gMeme.selectedImgId = imgId
-}
-
 function getImgUrl() {
     const imgIdx = getImgByIdx();
     return gImgs[imgIdx].url;
@@ -89,20 +90,27 @@ function changeTxtsize(val) {
 }
 
 function moveLine(val) {
-    gMeme.lines[gMeme.selectedLineIdx].y += val 
+    gMeme.lines[gMeme.selectedLineIdx].y += val
 }
 
-function ChangeAlign(val){
+function ChangeAlign(val) {
     gMeme.lines[gMeme.selectedLineIdx].align = val
 }
 
 function addLine() {
+    if (gMeme.lines.length ===0) {
+        var x = 250
+        var y = 50
+    }
+    else if (gMeme.lines.length === 1) {
+        var x = 250
+        var y = 450
+    }
+    else {
+        var x = 250
+        var y = 250
+    }
     gMeme.selectedLineIdx++
-    // if (gMeme.selectedLineIdx === 1){
-    //     y = 350;
-    // }else if (gMeme.selectedLineIdx === 2){
-    //     y = 250;
-    // }
     let line = {
         txt: 'add text',
         size: 40,
@@ -110,14 +118,14 @@ function addLine() {
         fontFamily: 'impact',
         fontColor: 'white',
         align: 'center',
-        x:250,
-        y:150
+        x,
+        y
     };
     gMeme.lines.push(line)
 }
 
-function deleteLine(){
-    if (gMeme.lines.length===0) return
+function deleteLine() {
+    if (gMeme.lines.length === 0) return
     gMeme.lines.splice([gMeme.selectedLineIdx], 1)
     gMeme.selectedLineIdx--
 }
@@ -130,7 +138,7 @@ function changeBorderColor(color) {
     gMeme.lines[gMeme.selectedLineIdx].borderColor = color
 }
 
-function changeFont(font){
+function changeFont(font) {
     gMeme.lines[gMeme.selectedLineIdx].fontFamily = font
 }
 
@@ -139,7 +147,7 @@ function switchLines() {
     if (gMeme.selectedLineIdx + 1 === gMeme.lines.length) gMeme.selectedLineIdx = 0;
     else gMeme.selectedLineIdx++;
     gMeme.lines[gMeme.selectedLineIdx].borderColor = 'red'
-    
+
 }
 
 // upload to facebook
@@ -187,15 +195,19 @@ function saveMeme(canvas) {
 
 function loadMemes() {
     gSavedMemes = loadFromStorage(MEMES_KEY)
-    if (!gSavedMemes || gSavedMemes.length === 0) return ;
+    if (!gSavedMemes || gSavedMemes.length === 0) return;
     return gSavedMemes;
 }
 
-function loadMemeById(memeId) {
-    var currMeme = gSavedMemes.find(savedMeme => {
-        if (savedMeme.id === memeId) return currMeme.meme;
-    })
-    return currMeme.meme;
-}
-
+// function getSearchImage(text) {
+//     var images = []
+//     gImgs.map(img => {
+//         img.keywords.map(keyword => {
+//             if (keyword.toLowerCase().includes(text)) {
+//                 images.push(img);
+//             }
+//         })
+//     })
+//     return images;
+// }
 
