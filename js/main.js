@@ -3,7 +3,6 @@
 var gCanvas;
 var gCtx;
 
-
 function onInit() {
     gCanvas = document.getElementById('my-canvas')
     gCtx = gCanvas.getContext('2d')
@@ -90,12 +89,7 @@ function downloadImg(elLink) {
 function onSaveMeme() {
     saveMeme(gCanvas)
     showSavedMemes()
-    OpenModal()
-}
-
-function OpenModal() {
-    // var elModal = document.querySelector('.modal');
-    // elModal.classList.toggle('hidden')
+   
 }
 
 function onEditImg(imgId) {
@@ -111,15 +105,13 @@ function onClickImg(imgId) {
 }
 
 function renderGallery() {
-    // document.querySelector('.edit-memes-container').style.display = 'none'
-    // document.querySelector('.save-memes-container').style.display = 'none'
     showGallery()
-    let header = `<h2>Choose your favorite Meme</h2>`
+    let elheader = `<h2>Choose your favorite Meme</h2>`
     let images = getImgs();
     let strHtml = images.map((img) => {
         return `<img class="img-box" src="${img.url}" onclick="onClickImg(${img.id})">`;
     }).join('');
-    document.querySelector('.grid-header').innerHTML = header;
+    document.querySelector('.grid-head').innerHTML = elheader;
     document.querySelector('.img-container').innerHTML = strHtml;
 }
 
@@ -131,11 +123,11 @@ function showGallery() {
 function showEditor() {
     document.querySelector('.img-container').style.display = 'none'
     document.querySelector('.edit-memes-container').style.display = 'flex'
-    document.querySelector('.grid-header').innerHTML = `<h2>Edit your Meme</h2>`
+    document.querySelector('.grid-head').innerHTML = `<h2>Edit your Meme</h2>`
 }
 
 function showSavedMemes() {
-    document.querySelector('.grid-header').innerHTML = `<h2>Your saved Memes</h2>`
+    document.querySelector('.grid-head').innerHTML = `<h2>Your saved Memes</h2>`
     document.querySelector('.edit-memes-container').style.display = 'none'
     document.querySelector('.img-container').style.display = 'none'
     document.querySelector('.save-memes-container').style.display = 'grid'
