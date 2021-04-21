@@ -67,12 +67,25 @@ p {
 
  button {
   cursor: pointer;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
 } 
+input{
+  font-size: 1.3rem;
+}
 
 .edit-btns button {
   cursor: pointer;
   width: 50px;
   height: 50px;
+}
+
+.btns-1 button ,.btns-2 button{
+  background-color:#ffd3b6b4;
+}
+
+ a{
+  text-decoration: none;
 }
 
 i{
@@ -136,15 +149,10 @@ canvas{
   transition: box-shadow .3s;
 }
 
-.main-nav a.active {
-  color: #faa111;
-  box-shadow: inset 0 -6px 0 #faa111;
-}
-
 .main-nav a:hover {
   color: #faa111;
   box-shadow: inset 0 -6px 0 #faa111;
-  
+  cursor: pointer;
 }
 
 .main-nav {
@@ -156,13 +164,21 @@ canvas{
   margin: 0 auto;
 }
 
+.grid-header{
+  text-align: center;
+}
+
 .img-container{
-  grid-template-columns: repeat(auto-fill, minmax(175px,1fr));
+  background-color: #ffffff;
+  grid-template-columns: repeat(auto-fill, minmax(170px,1fr));
   height: 600px;
   grid-gap:10px;
   overflow: auto;
   justify-content: center;
   align-items: center;
+  box-shadow: 0px 2px 7px 1px rgb(85, 85, 85);
+  padding: 20px;
+  border-radius: 10px;
 }
 /* width */
 ::-webkit-scrollbar {
@@ -184,6 +200,7 @@ canvas{
 }
 
 .edit-memes-container{
+  flex-direction: row;
   border: 2px solid;
 }
 .meme-txt{
@@ -194,31 +211,51 @@ margin-bottom: 20px;
   height: 50px;
   margin-bottom: 20px;
   background-color: inherit;
-  border: 2px solid;
   border-radius: 5px;
   margin-bottom: 20px;
-  
+  background-image: linear-gradient(90deg, #f66f00 0%,#fbb33f 100%);
+
 }
 .canvas-container{
   flex:1;
 }
 
+#my-canvas{
+  border-radius:10px
+}
+
 .edit-img-container{
   padding: 80px;
   flex:1;
-  border: 2px solid;
 }
 
 .edit-btns > *{
   border-radius: 3px;
   margin-bottom: 20px;
 }
+
+.font-select{
+background-color:white;
+width:100px;
+}
+
+.border-color ,.font-color{
+  background-color:white;
+width:50px;
+}
 .img-box{
   max-width: 200px;
 }
 
-.modal {
-
+.save-memes-container{
+  background-color: rgb(255, 255, 255);
+  padding: 20px;
+  border-radius: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(170px,1fr));
+  height: 600px;
+  grid-gap:10px;
+  overflow: auto;
+  box-shadow: 0px 2px 7px 1px rgb(85, 85, 85);
 }
 
 
@@ -237,63 +274,46 @@ margin-bottom: 20px;
   justify-content: space-evenly;
 }
 
-/* .social-nav > a {
-  display: flex;
-  color: #fff;
-  background-color: #e5e5e5;
-  width: 40px;
-  height: 40px;
-  align-items: center;
-  justify-content: center;
+small > a {
   text-decoration: none;
-}
-
-.social-nav>a:not(:last-child) {
-  margin-inline-end: 1rem;
-}
-
-.fa {
-  font-family: brands;
-}
-
-.fa.facebook::before {
-  content: "\f39e";
-}
-
-.fa.facebook:hover {
-  background-color: #516fad;
-}
-
-.fa.twitter::before {
-  content: "\f099";
-}
-
-.fa.twitter:hover {
-  background-color: #568cf7;
-}
-
-.fa.instagram::before {
-  content: "\f16d";
-}
-
-.fa.instagram:hover {
-  background: radial-gradient(circle farthest-corner at 35% 90%, #fec564, transparent 50%), radial-gradient(circle farthest-corner at 0 140%, #fec564, transparent 50%), radial-gradient(ellipse farthest-corner at 0 -25%, #5258cf, transparent 50%), radial-gradient(ellipse farthest-corner at 20% -50%, #5258cf, transparent 50%), radial-gradient(ellipse farthest-corner at 100% 0, #893dc2, transparent 50%), radial-gradient(ellipse farthest-corner at 60% -20%, #893dc2, transparent 50%), radial-gradient(ellipse farthest-corner at 100% 100%, #d9317a, transparent), linear-gradient(#6559ca, #bc318f 30%, #e33f5f 50%, #f77638 70%, #fec66d 100%);
-}
-
-.fa.linkedin::before {
-  content: "\f0e1";
-}
-
-.fa.linkedin:hover {
-  background-color: #516fad;
-}
-
-small>a {
-  text-decoration: none;
-  color: #606060;
+  color: #ffffff;
   font-weight: bold;
+  font-size: 1rem;
+} 
 
-} */
+@media (max-width: 500px) {
+  .nav-container, .main-nav a{
+    height:50px;
+  }
+
+  .edit-memes-container{
+    flex-direction: column;
+    height: 600px;
+    border: 0;
+  }
+
+  .search-meme-container{
+margin-bottom: 50px;
+ 
+  }
+
+  .edit-img-container{
+  padding: 0.5em;;
+  }
+  .container {
+    margin: 0 auto;
+    overflow: auto;
+  }
+
+  .main-footer{
+   position: fixed;
+   bottom: 0;
+   height: 4rem;
+  }
+}
+
+
+
 
 
 

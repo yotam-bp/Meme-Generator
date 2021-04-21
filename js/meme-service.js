@@ -35,8 +35,10 @@ var gKeywords = { 'happy': 12, 'funny puk': 1 }
         borderColor: '#000000',
         fontFamily: 'impact',
         fontColor: '#ffffff',
-        x: 120,
-        y: 100
+        align:'center',
+        x:250,
+        y:50
+
     }]
 }
 
@@ -82,41 +84,34 @@ function updateText(TxtInput) {
     gMeme.lines[gMeme.selectedLineIdx].txt = TxtInput
 }
 
-function getMemeTxt() {
-    return gMeme.lines[gMeme.selectedLineIdx].txt
-}
-
-function increaseTxt(val) {
+function changeTxtsize(val) {
     gMeme.lines[gMeme.selectedLineIdx].size += val
 }
 
-function decreaseTxt(val) {
-    gMeme.lines[gMeme.selectedLineIdx].size -= val
+function moveLine(val) {
+    gMeme.lines[gMeme.selectedLineIdx].y += val 
 }
 
-function moveLineUp(val) {
- gMeme.lines[gMeme.selectedLineIdx].y -= val
+function ChangeAlign(val){
+    gMeme.lines[gMeme.selectedLineIdx].align = val
 }
-
-function moveLineDown(val) {
-    gMeme.lines[gMeme.selectedLineIdx].y += val
-}
-
-function clearCanvas() {
-    gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height)
-}
-
 
 function addLine() {
     gMeme.selectedLineIdx++
+    // if (gMeme.selectedLineIdx === 1){
+    //     y = 350;
+    // }else if (gMeme.selectedLineIdx === 2){
+    //     y = 250;
+    // }
     let line = {
         txt: 'add text',
         size: 40,
         borderColor: 'black',
         fontFamily: 'impact',
         fontColor: 'white',
-        x :150,
-        y: 150
+        align: 'center',
+        x:250,
+        y:150
     };
     gMeme.lines.push(line)
 }
@@ -135,13 +130,16 @@ function changeBorderColor(color) {
     gMeme.lines[gMeme.selectedLineIdx].borderColor = color
 }
 
+function changeFont(font){
+    gMeme.lines[gMeme.selectedLineIdx].fontFamily = font
+}
+
 function switchLines() {
-    if (gMeme.lines.length===0) return
-    if (gMeme.selectedLineIdx > gMeme.lines.length - 1) {
-        gMeme.selectedLineIdx = 0
-        return
-    }
-    gMeme.selectedLineIdx--
+    if (gMeme.lines.length === 0) return;
+    if (gMeme.selectedLineIdx + 1 === gMeme.lines.length) gMeme.selectedLineIdx = 0;
+    else gMeme.selectedLineIdx++;
+    gMeme.lines[gMeme.selectedLineIdx].borderColor = 'red'
+    
 }
 
 // upload to facebook
@@ -184,6 +182,20 @@ function saveMeme(canvas) {
     }
     gSavedMemes.push(currMeme);
     saveToStorage(MEMES_KEY, gSavedMemes)
+    console.log(gSavedMemes)
+}
+
+function loadMemes() {
+    gSavedMemes = loadFromStorage(MEMES_KEY)
+    if (!gSavedMemes || gSavedMemes.length === 0) return ;
+    return gSavedMemes;
+}
+
+function loadMemeById(memeId) {
+    var currMeme = gSavedMemes.find(savedMeme => {
+        if (savedMeme.id === memeId) return currMeme.meme;
+    })
+    return currMeme.meme;
 }
 
 
