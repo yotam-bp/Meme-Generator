@@ -164,7 +164,7 @@ canvas{
   margin: 0 auto;
 }
 
-.grid-header{
+.grid-head{
   text-align: center;
 }
 
@@ -287,14 +287,18 @@ small > a {
   }
 
   .edit-memes-container{
+    margin-top: 5rem;
     flex-direction: column;
-    height: 600px;
+    height: 570px;
     border: 0;
   }
 
+  .grid-head{
+    margin-bottom: 1rem;
+  }
+
   .search-meme-container{
-margin-bottom: 50px;
- 
+   margin-bottom: 1rem; 
   }
 
   .edit-img-container{
