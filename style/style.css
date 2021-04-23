@@ -42,14 +42,15 @@
 
 html {
   font-family: lato-regular, sans-serif;
-  color: #606060;
+  color: #cfcfcf;
   line-height: 1.25;
 }
 
 body {
+  height: 100vh;
   font-size: 1rem;
   margin: 0;
-  background-color: rgb(230, 230, 230);
+  background-color: rgb(20, 20, 20);
 }
 
 h1,
@@ -58,11 +59,9 @@ h3,
 h4,
 h5,
 h6 {
+  color:#f5f5f5;
   margin: 0 0 1rem;
-}
-
-p {
-  margin: 0 0 1rem;
+  font-weight: lighter;
 }
 
  button {
@@ -109,11 +108,11 @@ img:hover{
 
 canvas{
   background: white;
-  border: 1px solid;
+  border-radius: 5px;
 }
 
 .main-content {
-  background-color:rgb(230, 230, 230); 
+  background-color:rgb(20, 20, 20); 
   padding-top: 20px;
 }
 
@@ -121,6 +120,7 @@ canvas{
   height: 100px;
   width: 100%;
   background-color: #292929;
+  
 }
 
 .logo {
@@ -137,6 +137,7 @@ canvas{
 .nav-container {
   justify-content:space-between;
   height: 100%;
+
 }
 
 .main-nav a {
@@ -169,7 +170,8 @@ canvas{
 }
 
 .img-container{
-  background-color: #ffffff;
+  align-content: start;
+  background-color: #292929;
   grid-template-columns: repeat(auto-fill, minmax(170px,1fr));
   height: 600px;
   grid-gap:10px;
@@ -201,7 +203,7 @@ canvas{
 
 .edit-memes-container{
   flex-direction: row;
-  border: 2px solid;
+  
 }
 .meme-txt{
 margin-bottom: 20px;
@@ -210,23 +212,24 @@ margin-bottom: 20px;
 .search-meme-container{
   height: 50px;
   margin-bottom: 20px;
-  background-color: inherit;
+  background-color: #2e2e2e;
   border-radius: 5px;
   margin-bottom: 20px;
-  background-image: linear-gradient(90deg, #f66f00 0%,#fbb33f 100%);
+  border: 1px solid rgba(230, 230, 230, 0.438);
+  /* background-image: linear-gradient(90deg, #f66f00 0%,#fbb33f 100%); */
 
 }
 .canvas-container{
   flex:1;
 }
 
-#my-canvas{
-  border-radius:10px
-}
-
 .edit-img-container{
-  padding: 80px;
+  background-color:#292929;
+  padding: 40px;
   flex:1;
+  margin: 50px;
+  border: 1px solid rgba(230, 230, 230, 0.438);
+  border-radius:5px;
 }
 
 .edit-btns > *{
@@ -245,10 +248,11 @@ width:50px;
 }
 .img-box{
   max-width: 200px;
+  border: 1.5px solid rgba(230, 230, 230, 0.438);
 }
 
 .save-memes-container{
-  background-color: rgb(255, 255, 255);
+  background-color: #292929;
   padding: 20px;
   border-radius: 10px;
   grid-template-columns: repeat(auto-fill, minmax(170px,1fr));
@@ -263,7 +267,7 @@ width:50px;
 .main-footer {
   position: absolute;
   background-color: #292929;
-  height: 100px;
+  height: 80px;
   width: 100%;
   margin-top: 20px;
   bottom: 0;
@@ -274,12 +278,21 @@ width:50px;
   justify-content: space-evenly;
 }
 
-small > a {
+small  {
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
   text-decoration: none;
-  color: #ffffff;
-  font-weight: bold;
   font-size: 1rem;
+  height: 40px;
 } 
+
+
+.git-img{
+  width: 35px;
+}
+
 
 @media (max-width: 500px) {
 
@@ -296,16 +309,18 @@ small > a {
 
   h2{
     font-size: 1rem;
+    text-align: center;
   }
 
   .edit-memes-container{
-    margin-top: 4.5rem;
+    margin-top: 6rem;
     flex-direction: column;
-    height: 400px;
+    height: 380px;
     border: 0;
   }
 
   .save-memes-container{
+    grid-template-columns: repeat(auto-fill, minmax(150px,1fr));
     height: 400px;
     margin-bottom: 0.1rem; 
    }
@@ -320,11 +335,14 @@ small > a {
   }
 
   .search-meme-container{
+    height: 30px;
    margin-bottom: 0.1rem; 
+   border: none;
   }
 
   .edit-img-container{
   padding: 0.5em;
+  margin:1em
   }
   .container {
     padding: 0;
@@ -335,14 +353,25 @@ small > a {
   .main-footer{
    position: fixed;
    bottom: 0;
-   height: 3.5rem;
+   height: 4rem;
    text-align: center;
+  }
+
+  .footer-container{
+    height: 100%;
   }
 
    .logo > img{
      width: 70% ;
      margin-inline-start: 10px;
    }
+
+   .git-img{
+    width: 20px;
+  }
+  .footer-logo {
+    width: 20%;
+  }
 
   .edit-btns button {
     width: 40px;
@@ -360,7 +389,6 @@ small > a {
   .meme-txt > input{
     padding: 0 5rem;
   }
-  
   
 }
 

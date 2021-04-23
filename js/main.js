@@ -7,7 +7,7 @@ var gCtx;
 function onInit() {
     gCanvas = document.getElementById('my-canvas')
     gCtx = gCanvas.getContext('2d')
-    renderGallery()
+    renderGallery(getImgs())
 }
 
 function drawImg(imgId) {
@@ -27,10 +27,6 @@ function drawImg(imgId) {
     }
 }
 
-function renderCanvas() {
-    let currMeme = getMeme()
-    drawImg(currMeme.selectedImgId)
-}
 
 function onTextEdit(TxtInput) {
     updateText(TxtInput)
@@ -90,29 +86,79 @@ function downloadImg(elLink) {
 function onSaveMeme() {
     saveMeme(gCanvas)
     showSavedMemes()
-   
+    clearCanvas()
+
 }
 
-// function onEditImg(memeId) {
-//     showEditor()
-//     renderCanvas()
-// }
+function onEditImg(meme) {
+    console.log('meme', meme)
+    let currMeme = getSavedMemeById(meme)
+    drawImg(currMeme.data.selectedImgId)
+    drawText(currMeme.data.lines)
+    showEditor()
+    renderCanvas()
+    } 
 
-function onClickImg(imgId) {
+    function renderCanvas() {
+        let currMeme = getMeme()
+        drawImg(currMeme.selectedImgId)
+    }
+    
+    function onClickImg(imgId) {
     showEditor()
     _createMeme(imgId)
     renderCanvas()
 }
 
-function renderGallery() {
+function drawText() {
+    const gMeme = getMeme()
+    gMeme.lines.forEach(line => {
+        gCtx.strokeStyle = line.borderColor
+        gCtx.fillStyle = line.fontColor
+        gCtx.direction = line.align
+        gCtx.font = line.size + 'px ' + line.fontFamily
+        gCtx.textAlign = line.align
+        gCtx.fillText(line.txt, line.x, line.y)
+        gCtx.strokeText(line.txt, line.x, line.y)
+        document.querySelector('.meme-txt').placeholder = `${gMeme.lines[gMeme.selectedLineIdx].txt}`
+    })
+}
+
+function renderGallery(images) {
     showGallery()
     let elheader = `<h2>Choose your favorite Meme</h2>`
-    let images = getImgs();
     let strHtml = images.map((img) => {
         return `<img class="img-box" src="${img.url}" onclick="onClickImg(${img.id})">`;
     }).join('');
     document.querySelector('.grid-head').innerHTML = elheader;
     document.querySelector('.img-container').innerHTML = strHtml;
+}
+
+
+function renderSavedMemes() {
+    const memes = loadMemes()
+    console.log('memes', memes)
+    if(!memes)  document.querySelector('.grid-head').innerHTML = '<h2>Make Your First Meme</h2>' 
+    else {  let strHtml = memes.map((meme) => {
+        return `<img class="meme-box" src="${meme.url}" onclick="onEditImg('${meme.id}')">`;
+    }).join('');
+    document.querySelector('.save-memes-container').innerHTML = strHtml
+ }
+}
+
+// function toggleMenu() {
+//     document.body.classList.toggle('menu-open')
+//     document.querySelector('.main-nav').classList.toggle('active')
+// }
+
+function onSearchImg(text) {
+    if (text.value === '') {
+        let gallery = getImgs();
+        renderGallery(gallery)
+        return
+    }
+    let img = getSearchImage(text);
+    renderGallery(img)
 }
 
 function showGallery() {
@@ -124,6 +170,7 @@ function showGallery() {
 function showEditor() {
     document.querySelector('.img-container').style.display = 'none'
     document.querySelector('.edit-memes-container').style.display = 'flex'
+    document.querySelector('.save-memes-container').style.display = 'none'
     document.querySelector('.grid-head').innerHTML = `<h2>Edit your Meme</h2>`
 }
 
@@ -134,29 +181,3 @@ function showSavedMemes() {
     document.querySelector('.save-memes-container').style.display = 'grid'
     renderSavedMemes()
 }
-
-function renderSavedMemes() {
-    const memes = loadMemes()
-    let strHtml = memes.map((meme) => {
-        return `<img class="meme-box" src="${meme.canvasData}" onclick="onEditImg(${meme.id})">`;
-    }).join('');
-    document.querySelector('.save-memes-container').innerHTML = strHtml
-}
-
-function toggleMenu() {
-    document.body.classList.toggle('menu-open')
-    document.querySelector('.main-nav').classList.toggle('active')
-}
-
-
-
-// -----To Finish--------
-// function onSearchImg(text) {
-//     if (text.value === '') {
-//         let gallery = getImgs();
-//         renderGallery(gallery)
-//         return
-//     }
-//     let images = getSearchImage(text);
-//     renderGallery(images);
-// }

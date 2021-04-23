@@ -16,7 +16,7 @@
 
     <header class="main-header">
         <div class="nav-container container flex space-between align-center">
-            <div class="logo" onclick="showGallery()"><img src="img/LOGO/LOGO.png" alt=""></div>
+            <div class="logo" onclick="showGallery()"><img src="img/logo/logo.png" alt=""></div>
             <ul class="main-nav flex justify-center align-center clean-list">
                 <li><a class="flex justify-center align-center active" onclick="showGallery()" >Gallery</a></li>
                 <li><a class="flex justify-center align-center" onclick="showSavedMemes()" >Memes</a></li>
@@ -29,10 +29,8 @@
             <section class="gallery-container flex flex-column">
                 <div class="search-meme-container flex flex-row">
                     <div class="search-container container flex align-center">
-                        <form class="search-form" oninput="onSearchImg(this.value)">
-                            <input type="txt" class="search" name="search" placeholder="Search" />
+                            <input type="txt" class="search" name="search" placeholder="Search" oninput="onSearchImg(this.value)">
                             <button class="search-btn">search</button>
-                        </form>
                         <div class="filter-words">
 
                         </div>
@@ -41,7 +39,7 @@
                 <div class="grid-head"></div>
             <div class="img-container grid"></div>
 
-            <div class="save-memes-container ">
+            <div class="save-memes-container grid ">
             </div>
 
             <section class="edit-memes-container flex justify-center">
@@ -54,21 +52,20 @@
                     <div class="edit-btns flex flex-column">
 
                         <div class="btns-1 flex justify-center space-evenly">
-                            <button class="btn-up" onclick="onMoveLine(-10)"><img src="ICONS/up-arrow.png" alt=""></button>
-                            <button class="btn-down" onclick="onMoveLine(10)"><img src="ICONS/down-arrow.png" alt=""></button>
-                            <button class="btn-switch-line" onclick="onSwitchLines()"><img src="ICONS/up&down.png" alt=""></button>
-                            <button class="btn-delete-line" onclick="onDeleteLine()"><img src="ICONS/trash.png" alt=""></button>
-                            <button class="btn-add-line" onclick="onAddLine()"><img src="ICONS/add.png" alt="">
+                            <button class="btn-up" onclick="onMoveLine(-10)"><img src="icons/up-arrow.png" alt=""></button>
+                            <button class="btn-down" onclick="onMoveLine(10)"><img src="icons/down-arrow.png" alt=""></button>
+                            <button class="btn-switch-line" onclick="onSwitchLines()"><img src="icons/up&down.png" alt=""></button>
+                            <button class="btn-delete-line" onclick="onDeleteLine()"><img src="icons/trash.png" alt=""></button>
+                            <button class="btn-add-line" onclick="onAddLine()"><img src="icons/add.png" alt="">
                             </button>
                         </div>
 
                         <div class="btns-2 flex justify-center space-evenly">
-                            <button class="ctrl-btn bigger" onclick="onChangeTxtsize(3)"><img src="ICONS/increase.png" alt=""></button>
-                            <button class="ctrl-btn smaller" onclick="onChangeTxtsize(-3)"><img src="ICONS/decrease.png" alt=""></button>
-                            <button class="ctrl-btn align-right" value="right" onclick="onChangeAlign(this.value)"><img src="ICONS/align-left.png" alt=""></button>
-                            <button class="ctrl-btn center-align" value="center" onclick="onChangeAlign(this.value)"><img src="ICONS/center-align.png" alt=""></button>
-                            <button class="ctrl-btn align-left" value="left" onclick="onChangeAlign(this.value)"><img src="ICONS/align-right.png" alt=""></button>
-                            
+                            <button class="ctrl-btn bigger" onclick="onChangeTxtsize(3)"><img src="icons/increase.png" alt=""></button>
+                            <button class="ctrl-btn smaller" onclick="onChangeTxtsize(-3)"><img src="icons/decrease.png" alt=""></button>
+                            <button class="ctrl-btn align-right" value="right" onclick="onChangeAlign(this.value)"><img src="icons/align-left.png" alt=""></button>
+                            <button class="ctrl-btn center-align" value="center" onclick="onChangeAlign(this.value)"><img src="icons/center-align.png" alt=""></button>
+                            <button class="ctrl-btn align-left" value="left" onclick="onChangeAlign(this.value)"><img src="icons/align-right.png" alt=""></button>              
                         </div>
 
                         <div class="btns-3 flex justify-center space-evenly">
@@ -85,10 +82,10 @@
                         <div class="btns-4 flex justify-center space-evenly">
                             <form action="" method="POST" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
                                 <input name="img" id="imgData" type="hidden" />
-                                <button class="btn-share" type="submit"><img src="ICONS/facebook.gif" alt=""></button>
+                                <button class="btn-share" type="submit"><img src="icons/facebook.gif" alt=""></button>
                               </form>
-                            <button class="save-meme" onclick="onSaveMeme()"><img src="ICONS/save.png" alt=""></button>
-                            <button><a href="#" class="download-btn" onclick="downloadImg(this)"download="my-meme.jpg"><img src="ICONS/download.gif" alt=""></a></button>
+                            <button class="save-meme" onclick="onSaveMeme()"><img src="icons/save.png" alt=""></button>
+                            <button><a href="#" class="download-btn" onclick="downloadImg(this)"download="my-meme.jpg"><img src="icons/download.gif" alt=""></a></button>
                         </div>
                     </div>
                 </div>
@@ -96,8 +93,10 @@
         </main>
         <footer class="main-footer">
             <div class="footer-container container flex flex-column align-center">
-                <div class="footer-logo logo"><img src="img/LOGO/LOGO.png" alt=""></div>
-                <small>© 2021 coffeerights - All Rights Reserved - Yotam Ben-Porat <a href="https://github.com/yotam-bp" target="_blank">👁</a></small>
+                <div class="footer-logo"><img src="img/logo/logo.png" alt=""></div>
+                <small><p>© 2021 coffeerights - All Rights Reserved - Yotam Ben-Porat</p>  
+                    <a href="https://github.com/yotam-bp" target="_blank">
+                </a> <img class="git-img" src="icons/github.png" alt=""> </small>
             </div>
         </footer>
 
@@ -106,5 +105,4 @@
         <script src="js/meme-service.js"></script>
         <script src="js/main.js"></script>
 </body>
-
 </html>

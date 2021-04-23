@@ -5,23 +5,23 @@ var gSavedMemes = [];
 
 var gImgs = [
     { id: 1, url: 'img/meme-img/1.jpg', keywords: ['politics'] },
-    { id: 2, url: 'img/meme-img/2.jpg', keywords: ['animals'] },
-    { id: 3, url: 'img/meme-img/3.jpg', keywords: [] },
-    { id: 4, url: 'img/meme-img/4.jpg', keywords: [] },
-    { id: 5, url: 'img/meme-img/5.jpg', keywords: [] },
-    { id: 6, url: 'img/meme-img/6.jpg', keywords: [] },
-    { id: 7, url: 'img/meme-img/7.jpg', keywords: [] },
-    { id: 8, url: 'img/meme-img/8.jpg', keywords: [] },
-    { id: 9, url: 'img/meme-img/9.jpg', keywords: [] },
-    { id: 10, url: 'img/meme-img/10.jpg', keywords: [] },
-    { id: 11, url: 'img/meme-img/11.jpg', keywords: [] },
-    { id: 12, url: 'img/meme-img/12.jpg', keywords: [] },
-    { id: 13, url: 'img/meme-img/13.jpg', keywords: [] },
-    { id: 14, url: 'img/meme-img/14.jpg', keywords: [] },
-    { id: 15, url: 'img/meme-img/15.jpg', keywords: [] },
-    { id: 16, url: 'img/meme-img/16.jpg', keywords: [] },
-    { id: 17, url: 'img/meme-img/17.jpg', keywords: [] },
-    { id: 18, url: 'img/meme-img/18.jpg', keywords: [] },
+    { id: 2, url: 'img/meme-img/2.jpg', keywords: ['animals', 'cute'] },
+    { id: 3, url: 'img/meme-img/3.jpg', keywords: ['animals', 'cute', 'baby'] },
+    { id: 4, url: 'img/meme-img/4.jpg', keywords: ['animals', 'cute'] },
+    { id: 5, url: 'img/meme-img/5.jpg', keywords: ['baby', 'cute'] },
+    { id: 6, url: 'img/meme-img/6.jpg', keywords: ['tv', 'funny'] },
+    { id: 7, url: 'img/meme-img/7.jpg', keywords: ['cute', 'baby', 'funny'] },
+    { id: 8, url: 'img/meme-img/8.jpg', keywords: ['tv', 'funny'] },
+    { id: 9, url: 'img/meme-img/9.jpg', keywords: ['cute', 'baby', 'funny'] },
+    { id: 10, url: 'img/meme-img/10.jpg', keywords: ['politics', 'funny'] },
+    { id: 11, url: 'img/meme-img/11.jpg', keywords: ['sports','funny'] },
+    { id: 12, url: 'img/meme-img/12.jpg', keywords: ['tv'] },
+    { id: 13, url: 'img/meme-img/13.jpg', keywords: ['movies'] },
+    { id: 14, url: 'img/meme-img/14.jpg', keywords: ['movies'] },
+    { id: 15, url: 'img/meme-img/15.jpg', keywords: ['movies'] },
+    { id: 16, url: 'img/meme-img/16.jpg', keywords: ['tv', 'funny'] },
+    { id: 17, url: 'img/meme-img/17.jpg', keywords: ['politics'] },
+    { id: 18, url: 'img/meme-img/18.jpg', keywords: ['tv','kids'] },
 
 ];
 
@@ -35,7 +35,7 @@ function _createMeme(imgId) {
         selectedLineIdx: 0,
         lines:
             [{
-                txt: 'text here',
+                txt: '',
                 size: 40,
                 borderColor: '#000000',
                 fontFamily: 'impact',
@@ -45,19 +45,6 @@ function _createMeme(imgId) {
                 y: 50
             }]
     }
-}
-
-function drawText() {
-    gMeme.lines.forEach(line => {
-        gCtx.strokeStyle = line.borderColor
-        gCtx.fillStyle = line.fontColor
-        gCtx.direction = line.align
-        gCtx.font = line.size + 'px ' + line.fontFamily
-        gCtx.textAlign = line.align
-        gCtx.fillText(line.txt, line.x, line.y)
-        gCtx.strokeText(line.txt, line.x, line.y)
-        document.querySelector('.meme-txt').placeholder = `${gMeme.lines[gMeme.selectedLineIdx].txt}`
-    })
 }
 
 function getLinesCount() {
@@ -72,13 +59,31 @@ function getMeme() {
     return gMeme;
 }
 
-function getImgByIdx() {
-    return gImgs.findIndex((img) => gMeme.selectedImgId === img.id);
+function getImgById(imgId) {
+    var img = gImgs.find(img => {
+        return imgId === img.id;
+    })
+    return img;
 }
 
-function getImgUrl() {
-    const imgIdx = getImgByIdx();
-    return gImgs[imgIdx].url;
+function clearCanvas() {
+    gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height)
+}
+
+// function getSavedMemeByIdx() {
+// return gSavedMemes.findIndex(meme => gSavedMemes.id === meme.id)
+// }
+
+function getImgByIdx() {
+    return gImgs.findIndex(img => gMeme.selectedImgId === img.id);
+}
+
+function getSavedMemeById(memeId) {
+    let memes = loadMemes()
+    let meme = memes.find(meme => {
+        return memeId === meme.id;
+    })
+     return meme;
 }
 
 function updateText(TxtInput) {
@@ -182,15 +187,15 @@ function doUploadImg(elForm, onSuccess) {
         })
 }
 
-function saveMeme(canvas) {
+function saveMeme() {
     let currMeme = {
         id: makeId(),
-        meme: gMeme,
-        canvasData: canvas.toDataURL('image/jpeg')
+        data: gMeme,
+        url: gCanvas.toDataURL('image/jpeg')
     }
     gSavedMemes.push(currMeme);
     saveToStorage(MEMES_KEY, gSavedMemes)
-    console.log(gSavedMemes)
+
 }
 
 function loadMemes() {
@@ -199,15 +204,14 @@ function loadMemes() {
     return gSavedMemes;
 }
 
-// function getSearchImage(text) {
-//     var images = []
-//     gImgs.map(img => {
-//         img.keywords.map(keyword => {
-//             if (keyword.toLowerCase().includes(text)) {
-//                 images.push(img);
-//             }
-//         })
-//     })
-//     return images;
-// }
+function getSearchImage(text) {
+    return gImgs.filter(img => {
+        return img.keywords.filter(keyword => {
+            return keyword.includes(text)
+        }).length
+    })
+}
+
+
+
 
