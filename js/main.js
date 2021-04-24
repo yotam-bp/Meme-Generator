@@ -96,7 +96,6 @@ function onEditImg(meme) {
     drawImg(currMeme.data.selectedImgId)
     drawText(currMeme.data.lines)
     showEditor()
-    renderCanvas()
     } 
 
     function renderCanvas() {
@@ -145,11 +144,6 @@ function renderSavedMemes() {
     document.querySelector('.save-memes-container').innerHTML = strHtml
  }
 }
-
-// function toggleMenu() {
-//     document.body.classList.toggle('menu-open')
-//     document.querySelector('.main-nav').classList.toggle('active')
-// }
 
 function onSearchImg(text) {
     if (text.value === '') {

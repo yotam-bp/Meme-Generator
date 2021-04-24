@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="ybp.png">
+    <link rel="icon" type="image/png" href="/img/ybp.png">
     <title>Meme-generator</title>
-    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/main.css">
 </head>
 
 <body onload="onInit()">
@@ -20,7 +20,7 @@
             <ul class="main-nav flex justify-center align-center clean-list">
                 <li><a class="flex justify-center align-center active" onclick="showGallery()" >Gallery</a></li>
                 <li><a class="flex justify-center align-center" onclick="showSavedMemes()" >Memes</a></li>
-                <li><a class="flex justify-center align-center" href="#">About</a></li>
+                <li><a class="flex justify-center align-center" href="https://github.com/yotam-bp" target="_blank">About</a></li>
             </ul>
         </div>
 
@@ -28,12 +28,23 @@
         <main class="main-content container ">
             <section class="gallery-container flex flex-column">
                 <div class="search-meme-container flex flex-row">
-                    <div class="search-container container flex align-center">
-                            <input type="txt" class="search" name="search" placeholder="Search" oninput="onSearchImg(this.value)">
-                            <button class="search-btn">search</button>
-                        <div class="filter-words">
-
+                    <div class="search-box container flex align-center">
+                        <button class="searchButton" href="#">
+                          <img src="icons/search-icon.png" alt="">
+                        </button>
+                            <input type="txt" class="searchInput" name="search" placeholder="Search" oninput="onSearchImg(this.value)">
                         </div>
+                        <div class="filter-words flex">
+                            <span onclick="onSearchImg('politics')">Politics</span>
+                            <span onclick="onSearchImg('funny')">Funny</span>
+                            <span onclick="onSearchImg('tv')">Tv</span>
+                            <span onclick="onSearchImg('cute')">Cute</span>
+                            <span onclick="onSearchImg('animals')">Animals</span>
+                            <span onclick="onSearchImg('movies')">Movies</span>
+                            <span onclick="onSearchImg('sport')">Sport</span>
+                            <span onclick="onSearchImg('kids')">Kids</span> 
+                            <span onclick="onSearchImg('')">All</span> 
+                         </div>
                     </div>
                 </section>
                 <div class="grid-head"></div>

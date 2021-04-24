@@ -2,6 +2,8 @@
 
 const MEMES_KEY = 'saved memes';
 var gSavedMemes = [];
+var gMeme
+var gKeywords = { 'happy': 12, 'funny puk': 1 }
 
 var gImgs = [
     { id: 1, url: 'img/meme-img/1.jpg', keywords: ['politics'] },
@@ -25,8 +27,6 @@ var gImgs = [
 
 ];
 
-var gKeywords = { 'happy': 12, 'funny puk': 1 }
-var gMeme
 
 function _createMeme(imgId) {
     gMeme = {
@@ -35,7 +35,7 @@ function _createMeme(imgId) {
         selectedLineIdx: 0,
         lines:
             [{
-                txt: '',
+                txt: 'Add text',
                 size: 40,
                 borderColor: '#000000',
                 fontFamily: 'impact',
