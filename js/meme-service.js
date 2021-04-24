@@ -2,7 +2,7 @@
 
 const MEMES_KEY = 'saved memes';
 var gSavedMemes = [];
-var gMeme
+var gMeme;
 var gKeywords = { 'happy': 12, 'funny puk': 1 }
 
 var gImgs = [
@@ -41,14 +41,10 @@ function _createMeme(imgId) {
                 fontFamily: 'impact',
                 fontColor: '#ffffff',
                 align: 'center',
-                x: 250,
-                y: 50
+                x:250 ,
+                y:50
             }]
-    }
-}
-
-function getLinesCount() {
-    return gMeme.lines.length;
+        }
 }
 
 function getImgs() {
@@ -56,34 +52,11 @@ function getImgs() {
 }
 
 function getMeme() {
-    return gMeme;
-}
-
-function getImgById(imgId) {
-    var img = gImgs.find(img => {
-        return imgId === img.id;
-    })
-    return img;
+ return gMeme;
 }
 
 function clearCanvas() {
     gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height)
-}
-
-// function getSavedMemeByIdx() {
-// return gSavedMemes.findIndex(meme => gSavedMemes.id === meme.id)
-// }
-
-function getImgByIdx() {
-    return gImgs.findIndex(img => gMeme.selectedImgId === img.id);
-}
-
-function getSavedMemeById(memeId) {
-    let memes = loadMemes()
-    let meme = memes.find(meme => {
-        return memeId === meme.id;
-    })
-     return meme;
 }
 
 function updateText(TxtInput) {
@@ -123,11 +96,13 @@ function addLine() {
         fontFamily: 'impact',
         fontColor: 'white',
         align: 'center',
-        x,
-        y
+         x, 
+         y 
     };
     gMeme.lines.push(line)
 }
+
+
 
 function deleteLine() {
     if (gMeme.lines.length === 0) return

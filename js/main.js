@@ -1,8 +1,7 @@
 'use strict'
-
+var isDragging = false
 var gCanvas;
 var gCtx;
-
 
 function onInit() {
     gCanvas = document.getElementById('my-canvas')
@@ -26,7 +25,6 @@ function drawImg(imgId) {
         drawText()
     }
 }
-
 
 function onTextEdit(TxtInput) {
     updateText(TxtInput)
@@ -85,13 +83,11 @@ function downloadImg(elLink) {
 
 function onSaveMeme() {
     saveMeme(gCanvas)
-    showSavedMemes()
+     showSavedMemes()
     clearCanvas()
-
 }
 
 function onEditImg(meme) {
-    console.log('meme', meme)
     let currMeme = getSavedMemeById(meme)
     drawImg(currMeme.data.selectedImgId)
     drawText(currMeme.data.lines)
@@ -99,18 +95,18 @@ function onEditImg(meme) {
     } 
 
     function renderCanvas() {
-        let currMeme = getMeme()
-        drawImg(currMeme.selectedImgId)
+    let currMeme = getMeme()
+    drawImg(currMeme.selectedImgId)
     }
     
     function onClickImg(imgId) {
     showEditor()
-    _createMeme(imgId)
+    _createMeme(imgId )
     renderCanvas()
 }
 
 function drawText() {
-    const gMeme = getMeme()
+    let gMeme = getMeme()
     gMeme.lines.forEach(line => {
         gCtx.strokeStyle = line.borderColor
         gCtx.fillStyle = line.fontColor
