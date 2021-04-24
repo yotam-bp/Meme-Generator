@@ -17,7 +17,7 @@ function drawImg(imgId) {
             gCanvas.width = 300;
             gCanvas.height = 300;
         }
-        else{
+        else {
             gCanvas.width = 500;
             gCanvas.height = 500;
         }
@@ -83,7 +83,7 @@ function downloadImg(elLink) {
 
 function onSaveMeme() {
     saveMeme(gCanvas)
-     showSavedMemes()
+    showSavedMemes()
     clearCanvas()
 }
 
@@ -92,16 +92,16 @@ function onEditImg(meme) {
     drawImg(currMeme.data.selectedImgId)
     drawText(currMeme.data.lines)
     showEditor()
-    } 
+}
 
-    function renderCanvas() {
+function renderCanvas() {
     let currMeme = getMeme()
     drawImg(currMeme.selectedImgId)
-    }
-    
-    function onClickImg(imgId) {
+}
+
+function onClickImg(imgId) {
     showEditor()
-    _createMeme(imgId )
+    _createMeme(imgId)
     renderCanvas()
 }
 
@@ -133,12 +133,13 @@ function renderGallery(images) {
 function renderSavedMemes() {
     const memes = loadMemes()
     console.log('memes', memes)
-    if(!memes)  document.querySelector('.grid-head').innerHTML = '<h2>Make Your First Meme</h2>' 
-    else {  let strHtml = memes.map((meme) => {
-        return `<img class="meme-box" src="${meme.url}" onclick="onEditImg('${meme.id}')">`;
-    }).join('');
-    document.querySelector('.save-memes-container').innerHTML = strHtml
- }
+    if (!memes) document.querySelector('.grid-head').innerHTML = '<h2>Make Your First Meme</h2>'
+    else {
+        let strHtml = memes.map((meme) => {
+            return `<img class="meme-box" src="${meme.url}" onclick="onEditImg('${meme.id}')">`;
+        }).join('');
+        document.querySelector('.save-memes-container').innerHTML = strHtml
+    }
 }
 
 function onSearchImg(text) {

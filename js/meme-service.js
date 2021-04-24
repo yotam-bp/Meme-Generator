@@ -4,6 +4,7 @@ const MEMES_KEY = 'saved memes';
 var gSavedMemes = [];
 var gMeme;
 var gKeywords = { 'happy': 12, 'funny puk': 1 }
+var gCurrLine 
 
 var gImgs = [
     { id: 1, url: 'img/meme-img/1.jpg', keywords: ['politics'] },
@@ -28,7 +29,15 @@ var gImgs = [
 ];
 
 
+
 function _createMeme(imgId) {
+    if(window.innerWidth <= 500){
+        var x = gCanvas.width / 2;
+        var y = gCanvas.height / 2 
+    }else {
+        var x = 250;
+        var y = 50; 
+    }
     gMeme = {
         id: makeId(),
         selectedImgId: imgId,
@@ -41,8 +50,8 @@ function _createMeme(imgId) {
                 fontFamily: 'impact',
                 fontColor: '#ffffff',
                 align: 'center',
-                x:250 ,
-                y:50
+                x,
+                y
             }]
         }
 }
@@ -55,8 +64,21 @@ function getMeme() {
  return gMeme;
 }
 
+
 function clearCanvas() {
     gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height)
+}
+
+function getImgByIdx() {
+    return gImgs.findIndex(img => gMeme.selectedImgId === img.id);
+}
+
+function getSavedMemeById(memeId) {
+    let memes = loadMemes()
+    let meme = memes.find(meme => {
+        return memeId === meme.id;
+    })
+     return meme;
 }
 
 function updateText(TxtInput) {
@@ -79,18 +101,30 @@ function addLine() {
     if (gMeme.lines.length ===0) {
         var x = 250
         var y = 50
+        if(window.innerWidth <= 500){
+            var x = gCanvas.width / 2;
+            var y = gCanvas.height / 2 
+        }
     }
     else if (gMeme.lines.length === 1) {
         var x = 250
         var y = 450
+        if(window.innerWidth <= 500){
+            var x = gCanvas.width / 2;
+            var y = 250 
+        }
     }
     else {
         var x = 250
         var y = 250
+        if(window.innerWidth <= 500){
+            var x = gCanvas.width / 2;
+            var y = 150 
+        }
     }
     gMeme.selectedLineIdx++
     let line = {
-        txt: 'add text',
+        txt: 'Add text',
         size: 40,
         borderColor: 'black',
         fontFamily: 'impact',
@@ -162,7 +196,7 @@ function doUploadImg(elForm, onSuccess) {
         })
 }
 
-function saveMeme() {
+function saveMeme(gCanvas) {
     let currMeme = {
         id: makeId(),
         data: gMeme,

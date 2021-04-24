@@ -1,4 +1,5 @@
 @import url("helpers.css"); 
+@import url("small-screen.css"); 
 
 * {
   box-sizing: border-box;
@@ -293,7 +294,7 @@ width:50px;
   justify-content: space-evenly;
 }
 
-small  {
+small {
   display:flex;
   flex-direction: row;
   align-items: center;
@@ -307,7 +308,7 @@ small  {
   width: 35px;
 }
 
-@media (max-width: 500px) {
+ @media (max-width: 500px) { 
   .main-nav a {
     font-size: .8rem;
     height: 50px;
@@ -334,7 +335,7 @@ small  {
   .save-memes-container{
     grid-template-columns: repeat(auto-fill, minmax(150px,1fr));
     height: 400px;
-    margin-bottom: 0.1rem; 
+    margin-bottom: 0.2rem; 
    }
 
   .img-container{
@@ -348,8 +349,10 @@ small  {
 
   .search-meme-container{
     height: 30px;
-   margin-bottom: 0.1rem; 
+   margin-bottom: 0.5rem; 
    border: none;
+   border-radius: none;
+   background: inherit;
   }
 
   .edit-img-container{
@@ -366,7 +369,7 @@ small  {
   .main-footer{
    position: fixed;
    bottom: 0;
-   height: 4rem;
+   height: 2rem;
    text-align: center;
   }
 
@@ -383,7 +386,7 @@ small  {
     width: 20px;
   }
   .footer-logo {
-    width: 20%;
+ display: none;
   }
 
   .edit-btns button {
@@ -391,7 +394,7 @@ small  {
     height: 40px;
 }
   small{
-    font-size: 0.7rem;
+    font-size: 0.6rem;
   }
   .edit-btns > *{
     margin-bottom: 0.5rem;
@@ -402,7 +405,25 @@ small  {
   .meme-txt > input{
     padding: 0 5rem;
   } 
-}
+
+  .filter-words{
+    display: none;
+  }
+  .search-box{
+    margin: 0;
+  }
+
+  .searchButton { 
+    width: 25px;
+    height: 25px;
+  }
+  
+  .searchInput {
+    color: rgb(0, 0, 0);
+    font-size:0.8rem;
+    height: 0;
+  }
+} 
 
 
 
